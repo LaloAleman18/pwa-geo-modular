@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123b35">
+  <title>Mi zona · Ubicación consciente</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./geo-helper.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <img src="./icons/icon-192.png" alt="" width="55" height="55">
+      <h1>Mi zona</h1>
+      <p>Consulta tu ubicación y su margen de error, o elige tu zona manualmente.</p>
+    </header>
+    <section class="tarjeta" aria-labelledby="titulo">
+      <h2 id="titulo">Adjuntar ubicación</h2>
+      <p class="privacidad">La ubicación se muestra en esta pantalla. La app no la guarda ni la envía.</p>
+      <label class="preferencia"><input id="alta-precision" type="checkbox"> Solicitar alta precisión</label>
+      <div class="acciones">
+        <button id="btn-ubicacion" aria-controls="aviso" aria-expanded="false">Adjuntar mi ubicación</button>
+        <button id="btn-manual" class="secundario">Elegir zona manualmente</button>
+      </div>
+      <section class="aviso" id="aviso" aria-labelledby="titulo-aviso" hidden>
+        <h3 id="titulo-aviso" tabindex="-1">Antes de compartir</h3>
+        <p>Haremos una sola lectura para mostrar tus coordenadas y qué tan precisas son. El navegador puede solicitar tu permiso.</p>
+        <div class="acciones">
+          <button id="btn-confirmar">Compartir mi ubicación</button>
+          <button id="btn-cancelar" class="secundario">Cancelar</button>
+        </div>
+      </section>
+      <p id="estado" role="status"></p>
+      <form id="manual" class="aviso" hidden>
+        <label for="zona">Tu zona en Morelos</label>
+        <div class="acciones">
+          <select id="zona" required>
+            <option value="">Selecciona una zona</option>
+            <option>Emiliano Zapata</option>
+            <option>Cuernavaca</option>
+            <option>Jiutepec</option>
+            <option>Temixco</option>
+            <option>Cuautla</option>
+            <option>Otra zona</option>
+          </select>
+          <button type="submit">Usar esta zona</button>
+        </div>
+        <div id="zona-otra" hidden>
+          <label for="nombre-zona">Municipio o ciudad</label>
+          <input id="nombre-zona" maxlength="80" disabled>
+        </div>
+      </form>
+      <section id="resultado" class="aviso" aria-labelledby="titulo-resultado" hidden>
+        <h3 id="titulo-resultado">Ubicación del dispositivo</h3>
+        <p id="calidad" class="calidad"></p>
+        <dl>
+          <div><dt>Latitud</dt><dd id="latitud"></dd></div>
+          <div><dt>Longitud</dt><dd id="longitud"></dd></div>
+          <div><dt>Margen de error</dt><dd id="margen"></dd></div>
+          <div><dt>Hora de lectura</dt><dd id="hora"></dd></div>
+        </dl>
+        <p class="privacidad">El margen indica la calidad estimada. El navegador puede combinar varias fuentes de ubicación.</p>
+      </section>
+    </section>
+  </main>
+</body>
+</html>
